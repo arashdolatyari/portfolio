@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arash Dolatyari — Product Designer</title>
+<meta name="description" content="Arash Dolatyari is a product designer with 5+ years of experience. He designs AI products, from user research and user flows to the final UI.">
+<meta property="og:title" content="Arash Dolatyari — Product Designer">
+<meta property="og:description" content="Product designer specialized in AI products: research, user flows, and UI design.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23D7262F'/><text x='16' y='22' font-family='Arial' font-weight='700' font-size='17' fill='white' text-anchor='middle'>A</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBFBFC;
+    --ink: #1A1C24;
+    --muted: #5E6270;
+    --rule: #E4E5EA;
+    --canvas: #F1F2F5;
+    --red: #D7262F;
+    --red-wash: #FCEDEE;
+    --font: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --wrap: 1200px;
+    --gutter: clamp(20px, 5vw, 56px);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(80px + env(safe-area-inset-top, 0px)); }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    font-variation-settings: "opsz" 16;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px);
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s;
+  }
+  .nav.scrolled { border-bottom-color: var(--rule); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 650; font-size: 1.0625rem; letter-spacing: -0.01em; }
+  .brand-mark { width: 10px; height: 10px; background: var(--red); }
+  .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(14px, 3vw, 32px); }
+  .nav ul a { text-decoration: none; font-size: 1rem; color: var(--muted); }
+  .nav ul a:hover { color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: clamp(72px, 14vh, 150px) 0 clamp(72px, 12vh, 120px); }
+  .measure { position: relative; display: inline-block; padding-top: 44px; }
+  .redline {
+    position: absolute; top: 0; left: 0; right: 0; height: 22px;
+    color: var(--red); font-size: .875rem; font-weight: 500;
+  }
+  .redline .line {
+    position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--red);
+    transform-origin: left center;
+  }
+  .redline .line::before, .redline .line::after {
+    content: ""; position: absolute; top: -6px; width: 1px; height: 13px; background: var(--red);
+  }
+  .redline .line::before { left: 0; }
+  .redline .line::after { right: 0; }
+  .redline .lbl {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    background: var(--paper); padding: 0 10px; white-space: nowrap;
+  }
+  .hero { --h1: clamp(2.6rem, 9.6vw, 8.5rem); }
+  /* Name on the left, photo on the right, both the same height */
+  .name-row { display: flex; align-items: flex-end; justify-content: space-between; gap: clamp(16px, 3vw, 48px); }
+  .measure { flex: 0 1 auto; min-width: 0; }
+  .portrait { margin: 0; flex: 0 0 auto; }
+  .portrait img {
+    height: calc(var(--h1) * 1.84 + 44px); width: auto; aspect-ratio: 1; object-fit: cover; object-position: 50% 35%;
+    background: var(--canvas); border: 1px solid var(--rule);
+  }
+  h1 {
+    margin: 0;
+    font-size: var(--h1);
+    line-height: .92;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    font-variation-settings: "opsz" 96, "wdth" 82;
+  }
+  h1 span { display: block; }
+  .intro { margin-top: 32px !important; max-width: 34ch; font-size: clamp(1.25rem, 2.2vw, 1.625rem); line-height: 1.4; margin: 0; letter-spacing: -0.01em; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px; font: inherit; font-size: 1rem; font-weight: 600; text-decoration: none;
+    border: 1px solid var(--ink); border-radius: 999px; transition: background .2s, color .2s, border-color .2s;
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--red); border-color: var(--red); }
+  .btn-ghost:hover { border-color: var(--red); color: var(--red); }
+  .status { display: flex; align-items: center; gap: 10px; margin-top: 28px; font-size: 1rem; color: var(--muted); }
+  .status i { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex: none; }
+  .status i::before, .status i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid var(--red); opacity: 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    .status i::before { animation: wave 2.4s ease-out infinite; }
+    .status i::after { animation: wave 2.4s ease-out 1.2s infinite; }
+  }
+  @keyframes wave { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(3.4); opacity: 0; } }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .redline .line { animation: draw .9s cubic-bezier(.65,0,.35,1) .25s both; }
+    .redline .lbl { animation: fade .5s ease 1.05s both; }
+  }
+  @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+  /* ---------- Sections ---------- */
+  section.block { padding: clamp(64px, 10vh, 112px) 0; border-top: 1px solid var(--rule); }
+  .head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: clamp(32px, 5vw, 56px); flex-wrap: wrap; }
+  h2 {
+    margin: 0; font-size: clamp(2rem, 4.6vw, 3.25rem); line-height: 1.05; font-weight: 650;
+    letter-spacing: -0.03em; font-variation-settings: "opsz" 72, "wdth" 88;
+  }
+  .head p { margin: 0; color: var(--muted); max-width: 40ch; }
+
+  /* ---------- Work ---------- */
+  .frame-bar { display: flex; justify-content: space-between; gap: 12px; font-size: .875rem; color: var(--muted); margin-bottom: 8px; }
+  .plist { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+  .pitem { position: relative; }
+  .pitem > a { display: block; padding: 28px 0 30px; border-bottom: 1px solid var(--rule); text-decoration: none; outline-offset: -2px; }
+  .pmeta { font-size: .9375rem; color: var(--muted); }
+  .ptitle {
+    display: block; margin-top: 6px; font-size: clamp(2.4rem, 5.4vw, 4.5rem); font-weight: 680; line-height: .98;
+    letter-spacing: -0.035em; font-variation-settings: "opsz" 96, "wdth" 84; transition: color .25s;
+  }
+  .pdesc-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s cubic-bezier(.2,.7,.2,1); }
+  .pdesc { overflow: hidden; }
+  .pdesc p { margin: 14px 0 0; max-width: 46ch; color: var(--muted); }
+  .pdesc .result { display: block; margin-top: 10px; color: var(--red); font-weight: 600; }
+  .pdesc .read { display: inline-block; margin-top: 14px; font-weight: 600; font-size: 1rem; text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 5px; }
+  .pitem.active .pdesc-wrap { grid-template-rows: 1fr; }
+  .pitem.active .ptitle { color: var(--red); }
+  .pcover-inline { display: none; }
+
+  /* The cover floats over the right side of the row while it's hovered or focused */
+  .pfloat {
+    position: absolute; right: 0; top: 50%; z-index: 3; width: clamp(300px, 40%, 500px); aspect-ratio: 2 / 1;
+    background: var(--canvas); border: 1px solid var(--rule); overflow: hidden; pointer-events: none;
+    box-shadow: 0 28px 56px -28px rgba(26, 28, 36, .4);
+    opacity: 0; transform: translateY(-50%) scale(.96); transition: opacity .25s ease, transform .45s cubic-bezier(.2,.7,.2,1);
+  }
+  .pitem.active .pfloat { opacity: 1; transform: translateY(-50%); }
+  .cover { position: absolute; inset: 0; }
+  .cover img { width: 100%; height: 100%; object-fit: cover; }
+  .cover-fallback { width: 100%; height: 100%; display: grid; place-items: center; background: var(--canvas); }
+  .cover-fallback span { color: var(--muted); font-size: .9375rem; }
+
+  /* ---------- UI explorations ---------- */
+  .xhead-text p { margin-top: 10px !important; }
+  .xnav { display: flex; gap: 8px; }
+  .xbtn {
+    width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--ink); background: transparent; color: var(--ink);
+    display: grid; place-items: center; cursor: pointer; transition: background .2s, color .2s, opacity .2s;
+  }
+  .xbtn:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+  .xbtn:disabled { opacity: .3; cursor: default; }
+  .xtrack {
+    --gap: clamp(16px, 2vw, 24px);
+    display: flex; gap: var(--gap); overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    padding-bottom: 14px; scrollbar-width: thin; scrollbar-color: #C9CBD3 transparent;
+  }
+  /* One whole slide plus about a third of the next is always in view; on short screens the height is capped too */
+  .xslide {
+    flex: 0 0 min(calc((100% - var(--gap)) * .75), calc((100vh - 220px) * 4 / 3));
+    flex: 0 0 min(calc((100% - var(--gap)) * .75), calc((100svh - 220px) * 4 / 3));
+    margin: 0; scroll-snap-align: start;
+  }
+  .xslide button { all: unset; display: block; width: 100%; cursor: zoom-in; }
+  .xslide button:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+  .xcanvas { aspect-ratio: 4 / 3; background: var(--canvas); border: 1px solid var(--rule); overflow: hidden; }
+  .xcanvas img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .xslide button:hover img { transform: scale(1.02); }
+  .xslide figcaption { margin-top: 10px; font-size: 1rem; }
+  .xmore { flex: 0 0 auto; display: grid; place-items: center; padding: 0 clamp(24px, 5vw, 64px) 34px; scroll-snap-align: end; }
+  .lightbox { border: 0; padding: 0; background: transparent; max-width: min(1200px, 94vw); max-height: 92vh; }
+  .lightbox::backdrop { background: rgba(26, 28, 36, .82); }
+  .lightbox img { max-width: 100%; max-height: 80vh; margin: 0 auto; }
+  .lightbox p { color: #fff; text-align: center; margin: 12px 0 0; font-size: 1rem; }
+  .lb-close { position: fixed; top: calc(16px + env(safe-area-inset-top, 0px)); right: 16px; font: inherit; font-size: .9375rem; font-weight: 600; padding: 8px 16px; border-radius: 999px; border: 0; background: #fff; color: var(--ink); cursor: pointer; }
+
+  /* ---------- Experience ---------- */
+  .xp { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+  .xp li {
+    display: grid; grid-template-columns: 48px minmax(0, 2fr) minmax(0, 1fr) minmax(0, .9fr);
+    gap: 20px; align-items: start; padding: 24px 0; border-bottom: 1px solid var(--rule);
+  }
+  .logo {
+    width: 48px; height: 48px; border: 1px solid var(--rule); background: #fff; display: grid; place-items: center;
+    overflow: hidden; font-weight: 700; font-size: 1.125rem; color: var(--ink); border-radius: 10px;
+  }
+  .logo img { width: 100%; height: 100%; object-fit: cover; }
+  .co { font-weight: 620; font-size: 1.1875rem; letter-spacing: -0.01em; text-decoration: none; }
+  a.co:hover { color: var(--red); }
+  .about { color: var(--muted); font-size: 1rem; margin: 2px 0 0; }
+  .what { font-size: 1rem; margin: 10px 0 0; max-width: 48ch; }
+  .role { font-size: 1rem; }
+  .dates { color: var(--muted); font-size: 1rem; text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* ---------- Contact ---------- */
+  .contact { padding: clamp(80px, 14vh, 140px) 0 clamp(56px, 8vh, 88px); border-top: 1px solid var(--rule); }
+  .contact h2 { max-width: 16ch; }
+  .mail {
+    display: inline-block; margin-top: 28px; font-size: clamp(1.6rem, 5.2vw, 3.5rem); font-weight: 600; letter-spacing: -0.03em;
+    text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 3px; text-underline-offset: 10px;
+    word-break: break-all; font-variation-settings: "opsz" 72, "wdth" 85;
+  }
+  .mail:hover { color: var(--red); }
+  .details { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px; margin-top: clamp(48px, 8vh, 80px); padding-top: 24px; border-top: 1px solid var(--rule); }
+  .details dt { color: var(--muted); font-size: .875rem; }
+  .details dd { margin: 4px 0 0; }
+  .details a { text-decoration: none; }
+  .details a:hover { color: var(--red); }
+  footer { padding: 24px 0 32px; color: var(--muted); font-size: .875rem; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--red); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .hero { padding-top: 56px; }
+    .pfloat { display: none; }
+    .pdesc-wrap { grid-template-rows: 1fr; }
+    .pitem.active .ptitle { color: var(--ink); }
+    .pcover-inline { display: block; position: relative; aspect-ratio: 2 / 1; margin-bottom: 16px; border: 1px solid var(--rule); overflow: hidden; background: var(--canvas); }
+  }
+  @media (max-width: 960px) {
+    .xp li { grid-template-columns: 48px minmax(0, 1fr) auto; grid-template-areas: "logo main dates" "logo role role"; row-gap: 8px; }
+    .xp .logo { grid-area: logo; } .xp .main { grid-area: main; } .xp .role { grid-area: role; } .xp .dates { grid-area: dates; }
+  }
+  @media (prefers-reduced-motion: reduce) { .pfloat, .pdesc-wrap { transition: none; } }
+  @media (max-width: 640px) {
+    body { font-size: 1.0625rem; }
+    .nav ul li[data-optional] { display: none; }
+    .brand-name { display: none; }
+    .xp li { grid-template-columns: 40px minmax(0, 1fr); grid-template-areas: "logo main" "logo role" "logo dates"; }
+    .xp .logo { width: 40px; height: 40px; }
+    .dates { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Arash Dolatyari, back to top"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name" data-name></span></a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li data-optional><a href="#experience">Experience</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="assets/Arash_Dolatyari_Product_Designer.pdf" download>Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="name-row">
+        <div class="measure">
+          <div class="redline" aria-hidden="true"><span class="line"></span><span class="lbl">5+ years of product design</span></div>
+          <h1><span>Arash</span><span>Dolatyari</span></h1>
+        </div>
+        <figure class="portrait">
+          <img src="assets/arash.jpg" alt="Portrait of Arash Dolatyari, smiling, in a black t-shirt" width="640" height="640">
+        </figure>
+      </div>
+      <p class="intro">Product designer for AI products. I humanize complex technology and improve the flows where people get stuck.</p>
+      <div class="actions">
+        <a class="btn btn-primary" data-mailto>Email me</a>
+        <a class="btn btn-ghost" href="#work">See my work</a>
+      </div>
+      <p class="status"><i aria-hidden="true"></i><span data-location></span></p>
+    </div>
+  </header>
+
+  <!-- Work -->
+  <section class="block" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="work-title">Selected work</h2>
+      </div>
+      <ul class="plist" id="plist"></ul>
+    </div>
+  </section>
+
+  <!-- UI explorations -->
+  <section class="block" id="explorations" aria-labelledby="ex-title">
+    <div class="wrap">
+      <div class="head">
+        <div class="xhead-text">
+          <h2 id="ex-title">UI explorations</h2>
+          <p>Designs I made for fun and shared on Dribbble. They are not client projects.</p>
+        </div>
+        <div class="xnav">
+          <button class="xbtn" id="x-prev" aria-label="Previous design"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="xbtn" id="x-next" aria-label="Next design"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+      <div class="xtrack" id="xtrack" tabindex="0" role="region" aria-label="UI explorations, scroll sideways to see more"></div>
+    </div>
+  </section>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Enlarged image">
+    <button class="lb-close" id="lb-close" aria-label="Close">Close</button>
+    <img id="lb-img" alt="">
+    <p id="lb-cap"></p>
+  </dialog>
+
+  <!-- Experience -->
+  <section class="block" id="experience" aria-labelledby="xp-title">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="xp-title">Where I've worked</h2>
+        <p>Teams I have worked with since 2021.</p>
+      </div>
+      <ol class="xp" id="xp-list" reversed></ol>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <h2 id="contact-title">Are you building an AI product? Let's talk.</h2>
+      <a class="mail" data-mailto data-email-text></a>
+      <dl class="details" id="details"></dl>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> <span data-name></span></span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   EDIT YOUR CONTENT HERE
+   Everything on the page is generated from these four lists.
+   ===================================================================== */
+
+const PROFILE = {
+  name: "Arash Dolatyari",
+  email: "adolatyari2@gmail.com",
+  phone: "+98 919 589 8973",
+  location: "Based in Tehran",
+  city: "Tehran, Iran",
+  medium: "https://medium.com/@adolatyari2",
+  linkedin: "https://www.linkedin.com/in/arash-dolatyari-product-designer/",
+  dribbble: "https://dribbble.com/ArashDolatyari"
+};
+
+/* Logos: put a file in assets/logos/ named after "slug" (e.g. doctorpay.svg or doctorpay.png).
+   If no file is found, the first letter is shown instead. */
+const EXPERIENCE = [
+  {
+    slug: "doctorpay", company: "Doctorpay", url: "https://doctorpay.ir",
+    about: "Treat now, pay later: loans for healthcare",
+    role: "UX Designer", dates: "Jul 2026 – Present",
+    what: "I designed the flow that onboards new clinics automatically, and I own the in-app experience from start to finish."
+  },
+  {
+    slug: "synthetic-solutions", company: "Synthetic Solutions", url: "",
+    about: "Product design agency",
+    role: "Product Designer", dates: "Jul 2025 – Jul 2026",
+    what: "I designed core flows, paywalls, and the design system for Sunflower, a sobriety app backed by Y Combinator."
+  },
+  {
+    slug: "jargeh", company: "Jargeh Digital Marketing", url: "",
+    about: "Digital marketing",
+    role: "Product Designer", dates: "Oct 2024 – Jul 2025",
+    what: "I ran 60+ user interviews to define three business models, then designed an MVP to test each one."
+  },
+  {
+    slug: "revive-design-lab", company: "Revive Design Lab", url: "",
+    about: "AI design tools for real estate professionals",
+    role: "Product Designer", dates: "Mar 2024 – Oct 2024",
+    what: "I restructured the information architecture and the positioning. The bounce rate on the Virtual Staging page dropped by 59%."
+  },
+  {
+    slug: "mcihub", company: "MCIHUB", url: "",
+    about: "Streaming platform",
+    role: "Product Designer", dates: "Mar 2023 – Mar 2024",
+    what: "I adapted Fluent Design for right-to-left languages and ran a study on watch time and retention."
+  },
+  {
+    slug: "freelance", company: "Freelance", url: "",
+    about: "Gaming, fitness, and operations",
+    role: "UI/UX Designer", dates: "Aug 2022 – Mar 2023",
+    what: "I designed Shekanj, the Art of Debate game, Body Fit Club management, and the production workflow for Rasha Company."
+  },
+  {
+    slug: "rsimu", company: "RSIMU", url: "",
+    about: "US-based remote team",
+    role: "UI/UX Designer", dates: "Aug 2021 – Aug 2022",
+    what: "I designed a restaurant management MVP, from user research to the final UI handoff."
+  }
+];
+
+/* Projects: shown in "Selected work".
+   cover: the image that opens over the row on hover, 2:1 (assets/projects/<slug>/cover.jpg).
+   If the cover file is missing, a simple title card is shown instead. */
+const PROJECTS = [
+  {
+    slug: "sunflower",
+    title: "Sunflower",
+    meta: "Synthetic Solutions, 2025",
+    desc: "I designed new features for a sobriety app backed by Y Combinator: onboarding, breathing exercises, community, and friend challenges.",
+    result: "100k+ people use it every month",
+    cover: "assets/projects/sunflower/cover.jpg",
+    link: "projects/sunflower.html"
+  },
+  {
+    slug: "ai-home-design",
+    title: "AI Home Design",
+    meta: "Revive Design Lab, 2024",
+    desc: "I talked to 20 people who canceled an AI photo editing tool for real estate. Then we rebuilt the product around how they really used it.",
+    result: "+35% subscriptions per session",
+    cover: "assets/projects/ai-home-design/cover.jpg",
+    link: "projects/ai-home-design.html"
+  },
+  {
+    slug: "golet",
+    title: "Golet",
+    meta: "AI plant care startup",
+    desc: "I interviewed 50 plant owners to find the real problem for an AI plant care startup. Then we tested two business models.",
+    result: "2 business models tested in 7 days",
+    cover: "assets/projects/golet/cover.jpg",
+    link: "projects/golet.html"
+  }
+];
+
+/* UI explorations: Dribbble shots that aren't client projects. Images are 4:3, in assets/explorations/.
+   They show in this order, then the "See more on Dribbble" button. */
+const EXPLORATIONS = [
+  { title: "Headphone landing page", image: "assets/explorations/01.jpg" },
+  { title: "AI CMS landing page", image: "assets/explorations/02.jpg" },
+  { title: "Share doc modal", image: "assets/explorations/03.jpg" },
+  { title: "3D feature card", image: "assets/explorations/04.jpg" },
+  { title: "Folder feature card", image: "assets/explorations/05.jpg" }
+];
+
+/* =====================================================================
+   RENDERING (no need to edit below)
+   ===================================================================== */
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s = "") => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+document.querySelectorAll("[data-name]").forEach(el => el.textContent = PROFILE.name);
+document.querySelectorAll("[data-mailto]").forEach(el => el.href = "mailto:" + PROFILE.email);
+document.querySelectorAll("[data-email-text]").forEach(el => el.textContent = PROFILE.email);
+document.querySelectorAll("[data-location]").forEach(el => el.textContent = PROFILE.location);
+$("#year").textContent = new Date().getFullYear();
+
+// Work: full-width rows; the cover opens over the row on hover (inline above the title on phones)
+const coverHTML = p => `<div class="cover" data-cover="${esc(p.slug)}">
+  <div class="cover-fallback"><span>Cover coming soon</span></div>
+</div>`;
+
+$("#plist").innerHTML = PROJECTS.map(p => `<li class="pitem" data-slug="${esc(p.slug)}">
+  <a href="${esc(p.link)}">
+    <div class="pcover-inline">${coverHTML(p)}</div>
+    <span class="pmeta">${esc(p.meta)}</span>
+    <span class="ptitle">${esc(p.title)}</span>
+    <div class="pdesc-wrap"><div class="pdesc">
+      <p>${esc(p.desc)}</p>
+      ${p.result ? `<span class="result">${esc(p.result)}</span>` : ""}
+      <span class="read">Read case study</span>
+    </div></div>
+  </a>
+  <div class="pfloat" aria-hidden="true">${coverHTML(p)}</div>
+</li>`).join("");
+
+// Load covers if the files exist; otherwise the title card stays
+PROJECTS.forEach(p => {
+  if (!p.cover) return;
+  const img = new Image();
+  img.onload = () => document.querySelectorAll(`[data-cover="${p.slug}"]`).forEach(el => {
+    el.innerHTML = `<img src="${esc(p.cover)}" alt="" style="object-position:${esc(p.coverPosition || "center")}">`;
+  });
+  img.src = p.cover;
+});
+
+const items = [...document.querySelectorAll(".pitem")];
+const setActive = slug => items.forEach(li => li.classList.toggle("active", li.dataset.slug === slug));
+const canHover = window.matchMedia("(hover: hover) and (min-width: 861px)");
+items.forEach(li => {
+  li.addEventListener("mouseenter", () => canHover.matches && setActive(li.dataset.slug));
+  li.addEventListener("mouseleave", () => canHover.matches && setActive(null));
+  li.addEventListener("focusin", () => setActive(li.dataset.slug));
+  li.addEventListener("focusout", () => setActive(null));
+});
+
+// UI explorations: a row of slides that scrolls sideways, ending with a link to Dribbble
+const track = $("#xtrack");
+const lb = $("#lightbox");
+track.innerHTML = EXPLORATIONS.filter(x => x.image).map((x, i) => `<figure class="xslide" data-i="${i}">
+  <button aria-label="Enlarge ${esc(x.title)}"><div class="xcanvas"><img src="${esc(x.image)}" alt="${esc(x.title)}" loading="lazy"></div></button>
+  <figcaption>${esc(x.title)}</figcaption>
+</figure>`).join("") + `<div class="xmore"><a class="btn btn-ghost" href="${esc(PROFILE.dribbble)}" target="_blank" rel="noopener">See more on Dribbble</a></div>`;
+track.querySelectorAll(".xslide").forEach(fig => {
+  const img = fig.querySelector("img");
+  img.addEventListener("error", () => { fig.remove(); if (!track.querySelector(".xslide")) $("#explorations").hidden = true; });
+  fig.querySelector("button").addEventListener("click", () => {
+    $("#lb-img").src = img.src; $("#lb-img").alt = img.alt; $("#lb-cap").textContent = img.alt;
+    lb.showModal();
+  });
+});
+const prev = $("#x-prev"), next = $("#x-next");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const step = dir => {
+  const slide = track.querySelector(".xslide");
+  const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+  track.scrollBy({ left: dir * (slide.offsetWidth + gap), behavior: reduceMotion.matches ? "auto" : "smooth" });
+};
+const updateArrows = () => {
+  prev.disabled = track.scrollLeft <= 2;
+  next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+};
+prev.addEventListener("click", () => step(-1));
+next.addEventListener("click", () => step(1));
+track.addEventListener("scroll", updateArrows, { passive: true });
+window.addEventListener("resize", updateArrows);
+updateArrows();
+$("#lb-close").addEventListener("click", () => lb.close());
+lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
+
+// Experience
+$("#xp-list").innerHTML = EXPERIENCE.map(x => {
+  const name = x.url
+    ? `<a class="co" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.company)}</a>`
+    : `<span class="co">${esc(x.company)}</span>`;
+  return `<li>
+    <div class="logo" data-slug="${esc(x.slug)}" data-initial="${esc(x.company.charAt(0))}" aria-hidden="true"></div>
+    <div class="main">${name}<p class="about">${esc(x.about)}</p><p class="what">${esc(x.what)}</p></div>
+    <div class="role">${esc(x.role)}</div>
+    <div class="dates">${esc(x.dates)}</div>
+  </li>`;
+}).join("");
+
+// Logos: try svg, then png, then show the initial
+document.querySelectorAll(".logo").forEach(box => {
+  const tries = ["svg", "png", "jpg", "webp"].map(ext => `assets/logos/${box.dataset.slug}.${ext}`);
+  const fallback = () => { box.textContent = box.dataset.initial; };
+  const attempt = i => {
+    if (i >= tries.length) return fallback();
+    const img = new Image();
+    img.alt = "";
+    img.onload = () => { box.textContent = ""; box.appendChild(img); };
+    img.onerror = () => attempt(i + 1);
+    img.src = tries[i];
+  };
+  fallback();
+  attempt(0);
+});
+
+// Contact details
+const details = [
+  ["Phone", `<a href="tel:${PROFILE.phone.replace(/\s/g, "")}">${esc(PROFILE.phone)}</a>`],
+  ["Location", esc(PROFILE.city)],
+  ["LinkedIn", `<a href="${esc(PROFILE.linkedin)}" target="_blank" rel="noopener">View profile</a>`],
+  ["Dribbble", `<a href="${esc(PROFILE.dribbble)}" target="_blank" rel="noopener">See shots</a>`],
+  ["Medium", `<a href="${esc(PROFILE.medium)}" target="_blank" rel="noopener">Read articles</a>`]
+];
+$("#details").innerHTML = details.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
+
+// Nav border on scroll
+const nav = $("#nav");
+const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 8);
+window.addEventListener("scroll", onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>

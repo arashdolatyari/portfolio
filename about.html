@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About — Arash Dolatyari</title>
+<meta name="description" content="About Arash Dolatyari, a product designer from Tehran, and the games and books he loves.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23D7262F'/><text x='16' y='22' font-family='Arial' font-weight='700' font-size='17' fill='white' text-anchor='middle'>A</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBFBFC; --ink: #1A1C24; --muted: #5E6270; --rule: #E4E5EA; --canvas: #F1F2F5;
+    --red: #D7262F; --red-wash: #FCEDEE;
+    --font: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --wrap: 1200px; --gutter: clamp(20px, 5vw, 56px);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(80px + env(safe-area-inset-top, 0px)); }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 1.125rem; line-height: 1.6; font-variation-settings: "opsz" 16; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+
+  .nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--rule); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 650; font-size: 1.0625rem; letter-spacing: -0.01em; }
+  .brand-mark { width: 10px; height: 10px; background: var(--red); }
+  .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(14px, 3vw, 32px); }
+  .nav ul a { text-decoration: none; font-size: 1rem; color: var(--muted); }
+  .nav ul a:hover, .nav ul a[aria-current] { color: var(--ink); }
+  .nav ul a[aria-current] { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 8px; }
+
+  .about-head { padding: clamp(56px, 10vh, 112px) 0 clamp(56px, 9vh, 96px); overflow: hidden; }
+  .ahero {
+    position: relative; display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
+    grid-template-areas: "stmt photo" "facts photo"; column-gap: clamp(32px, 5vw, 80px); row-gap: clamp(48px, 9vh, 104px);
+  }
+  /* Thin column lines behind the header */
+  .ahero::before {
+    content: ""; position: absolute; inset: -64px 0; z-index: -1; pointer-events: none;
+    background-image: repeating-linear-gradient(to right, #ECEDF1 0 1px, transparent 1px calc(100% / 6));
+    border-right: 1px solid #ECEDF1;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  }
+  .astmt { grid-area: stmt; }
+  .hello { margin: 0 0 18px; color: var(--muted); font-size: clamp(1.1rem, 1.6vw, 1.3rem); }
+  h1 {
+    margin: 0; max-width: 20ch; font-size: clamp(2.1rem, 4.6vw, 3.75rem); line-height: 1.12; font-weight: 680;
+    letter-spacing: -0.03em; font-variation-settings: "opsz" 72, "wdth" 88;
+  }
+  /* Each line fades from ink to gray, like light falling off */
+  h1 span {
+    background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 30%, #A4A7B2 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+  .aphoto { grid-area: photo; margin: 0; align-self: start; }
+  .aphoto img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; background: var(--canvas); border: 1px solid var(--rule); }
+  .afacts { grid-area: facts; align-self: end; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); margin: 0; }
+  .afacts dt { display: flex; align-items: center; gap: 12px; color: var(--muted); font-size: .9375rem; }
+  .afacts dt::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+  .afacts dd { margin: 14px 0 0; font-size: clamp(1.5rem, 2.6vw, 2.25rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; font-variation-settings: "opsz" 72, "wdth" 88; }
+
+  section.block { padding: clamp(56px, 9vh, 96px) 0; border-top: 1px solid var(--rule); }
+  .head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: clamp(28px, 4vw, 44px); flex-wrap: wrap; }
+  h2 { margin: 0; font-size: clamp(1.9rem, 4vw, 2.75rem); line-height: 1.05; font-weight: 650; letter-spacing: -0.03em; font-variation-settings: "opsz" 72, "wdth" 88; }
+  .head p { margin: 0; color: var(--muted); max-width: 46ch; }
+
+  .shelf { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 2.5vw, 28px); list-style: none; margin: 0; padding: 0; }
+  .item .cover { aspect-ratio: 2 / 3; background: var(--canvas); border: 1px solid var(--rule); overflow: hidden; }
+  .shelf.games .item .cover { aspect-ratio: 3 / 4; }
+  .item .cover img { width: 100%; height: 100%; object-fit: cover; }
+  .item .cover.empty { display: grid; place-items: center; border-style: dashed; border-color: #C9CBD3; background-image: radial-gradient(#D9DBE1 1px, transparent 1px); background-size: 16px 16px; }
+  .item .cover.empty span { background: var(--paper); padding: 6px 12px; color: var(--muted); font-size: .875rem; border: 1px solid var(--rule); }
+  .item h3 { margin: 14px 0 0; font-size: 1.125rem; font-weight: 620; line-height: 1.3; letter-spacing: -0.01em; }
+  .item .by { color: var(--muted); font-size: .9375rem; margin: 2px 0 0; }
+  .item .note { font-size: .9375rem; margin: 8px 0 0; }
+
+  /* Cover card shown until a real cover image is added */
+  .card { width: 100%; height: 100%; display: flex; flex-direction: column; padding: clamp(14px, 1.6vw, 20px); }
+  .card::before { content: ""; width: 28px; height: 3px; background: var(--red); flex: none; }
+  .card b { margin-top: auto; font-size: clamp(1.15rem, 1.9vw, 1.6rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.025em; font-variation-settings: "opsz" 72, "wdth" 85; overflow-wrap: anywhere; }
+  .card small { margin-top: 8px; font-size: .8125rem; line-height: 1.35; opacity: .72; }
+  .games .card { background: var(--ink); color: #fff; }
+  .books .card { background: #fff; color: var(--ink); }
+  .item .cover:not(.empty) { border-color: var(--rule); }
+  /* Wide artwork (like a game banner) sits centered on a dark background instead of being cropped */
+  .item .cover.wide { background: var(--ink); display: grid; place-items: center; }
+  .item .cover.wide img { height: auto; object-fit: contain; }
+  .item .cover img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* The title card already shows the name, so the caption appears only with a real cover */
+  .item.no-img h3, .item.no-img .by { display: none; }
+
+
+  footer { padding: 24px 0 32px; color: var(--muted); font-size: .875rem; border-top: 1px solid var(--rule); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer a { text-decoration: none; } footer a:hover { color: var(--red); }
+
+  @media (max-width: 860px) {
+    .shelf { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ahero { grid-template-columns: minmax(0, 1fr); grid-template-areas: "stmt" "photo" "facts"; row-gap: 40px; }
+    .ahero::before { background-image: repeating-linear-gradient(to right, #ECEDF1 0 1px, transparent 1px calc(100% / 3)); }
+    .aphoto { max-width: 420px; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 1.0625rem; }
+    .brand-name { display: none; }
+    .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .nav ul li[data-optional] { display: none; }
+    .afacts { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Arash Dolatyari</span></a>
+    <ul>
+      <li><a href="index.html#work">Work</a></li>
+      <li data-optional><a href="index.html#experience">Experience</a></li>
+      <li><a href="about.html" aria-current="page">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="assets/Arash_Dolatyari_Product_Designer.pdf" download>Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <header class="about-head">
+    <div class="wrap">
+      <div class="ahero">
+        <div class="astmt">
+          <p class="hello" id="about-hello"></p>
+          <h1><span id="about-title"></span></h1>
+        </div>
+        <figure class="aphoto"><img src="assets/arash.jpg" alt="Portrait of Arash Dolatyari, smiling, in a black t-shirt" width="640" height="640"></figure>
+        <dl class="afacts">
+          <div><dt>.experience</dt><dd>5+ years</dd></div>
+          <div><dt>.location</dt><dd>Tehran, Iran</dd></div>
+          <div><dt>.focus</dt><dd>AI products</dd></div>
+        </dl>
+      </div>
+    </div>
+  </header>
+
+  <section class="block" aria-labelledby="games-title">
+    <div class="wrap">
+      <div class="head"><h2 id="games-title">Games I love</h2><p id="games-intro"></p></div>
+      <ul class="shelf games" id="games"></ul>
+    </div>
+  </section>
+
+  <section class="block" id="movies-section" aria-labelledby="movies-title">
+    <div class="wrap">
+      <div class="head"><h2 id="movies-title">Movies I like</h2></div>
+      <ul class="shelf" id="movies"></ul>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="books-title">
+    <div class="wrap">
+      <div class="head"><h2 id="books-title">Books I've read and liked</h2><p id="books-intro"></p></div>
+      <ul class="shelf" id="books"></ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Arash Dolatyari</span>
+    <a href="index.html#contact">Get in touch</a>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   EDIT YOUR CONTENT HERE
+   For each item: title, by (studio, director, or author, plus year),
+   note (one line on why you like it, optional), cover (image path).
+   Put covers in assets/about/. Items with an empty title show as empty frames.
+   ===================================================================== */
+
+const ABOUT = {
+  hello: "Hi, I'm Arash.",
+  statement: "I design AI products that feel simple and human, and I keep improving them until they really help people.",
+  games: "I love playing games almost more than anything. If I get a chance to play with my friends, I never miss it.",
+  books: "Reading is how I calm my mind. When everything around me is chaos, knowing that I'm still learning and growing keeps me calm."
+};
+
+/* Covers: each item tries its images in order, then falls back to a title card.
+   1. A file you save in assets/about/ (named after the title, e.g. spec-ops-the-line.jpg)
+   2. The game's official artwork from Steam, or the book's cover from Open Library */
+const steam = id => [
+  `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${id}/library_600x900.jpg`,
+  `https://cdn.cloudflare.steamstatic.com/steam/apps/${id}/library_600x900.jpg`,
+  `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${id}/header.jpg`,
+  `https://cdn.cloudflare.steamstatic.com/steam/apps/${id}/header.jpg`
+];
+const openLibrary = (...isbns) => isbns.map(n => `https://covers.openlibrary.org/b/isbn/${n}-L.jpg?default=false`);
+
+const GAMES = [
+  { title: "Spec Ops: The Line", by: "Yager Development, 2012", covers: steam(50300) },
+  { title: "Call of Duty 2", by: "Infinity Ward, 2005", covers: steam(2630) },
+  { title: "Call of Duty: World at War", by: "Treyarch, 2008", covers: steam(10090) },
+  { title: "Assassin's Creed IV: Black Flag", by: "Ubisoft Montreal, 2013", covers: steam(242050) },
+  { title: "Hitman: Absolution", by: "IO Interactive, 2012", covers: steam(203140) },
+  { title: "EA Sports FC (FIFA) series", by: "EA Sports", covers: [...steam(2669320), ...steam(2195250)] },
+  { title: "Tomb Raider", by: "Crystal Dynamics", covers: steam(203160) }
+];
+
+/* Add movies here. The section stays hidden while this list is empty. */
+const MOVIES = [
+  /* { title: "Movie name", by: "Director, 2010" } */
+];
+
+const BOOKS = [
+  { title: "The Gambler", by: "Fyodor Dostoevsky", covers: openLibrary("9781847492067", "9781515433064", "9780199536375") },
+  { title: "The Dream of a Ridiculous Man", by: "Fyodor Dostoevsky", covers: openLibrary("9780241746912", "9781528708272", "9781419160226", "9781544767703") },
+  { title: "Scattered Minds", by: "Gabor Maté", covers: openLibrary("9781785042218", "9780676973402", "9780091816186") },
+  { title: "The Design of Everyday Things", by: "Don Norman", covers: openLibrary("9780465050659", "9780465067107") },
+  { title: "The Subtle Art of Not Giving a F*ck", by: "Mark Manson", covers: openLibrary("9780062457714", "9780062641540") }
+];
+
+/* ===================================================================== */
+const esc = (s = "") => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+document.getElementById("about-hello").textContent = ABOUT.hello;
+document.getElementById("about-title").textContent = ABOUT.statement;
+document.getElementById("games-intro").textContent = ABOUT.games;
+document.getElementById("books-intro").textContent = ABOUT.books;
+const slug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function shelf(id, list) {
+  const el = document.getElementById(id);
+  const items = list.filter(x => x.title);
+  if (!items.length) { el.closest("section").hidden = true; return; }
+  el.innerHTML = items.map((x, i) => `<li class="item no-img">
+    <div class="cover" data-k="${id}-${i}"><div class="card"><b>${esc(x.title)}</b><small>${esc(x.by || "")}</small></div></div>
+    <h3>${esc(x.title)}</h3>
+    ${x.by ? `<p class="by">${esc(x.by)}</p>` : ""}
+    ${x.note ? `<p class="note">${esc(x.note)}</p>` : ""}
+  </li>`).join("");
+  items.forEach((x, i) => {
+    const sources = [x.cover || `assets/about/${slug(x.title)}.jpg`, ...(x.covers || [])];
+    const tryNext = n => {
+      if (n >= sources.length) return; // keep the title card
+      const img = new Image();
+      img.alt = `Cover of ${x.title}`;
+      img.referrerPolicy = "no-referrer";
+      img.onload = () => {
+        if (img.naturalWidth < 40) return tryNext(n + 1); // ignore blank placeholders
+        const box = el.querySelector(`[data-k="${id}-${i}"]`);
+        box.textContent = "";
+        if (img.naturalWidth > img.naturalHeight) box.classList.add("wide");
+        box.appendChild(img);
+        box.closest(".item").classList.remove("no-img");
+      };
+      img.onerror = () => tryNext(n + 1);
+      img.src = sources[n];
+    };
+    tryNext(0);
+  });
+}
+shelf("games", GAMES);
+shelf("movies", MOVIES);
+shelf("books", BOOKS);
+</script>
+</body>
+</html>

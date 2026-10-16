@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sunflower — Arash Dolatyari</title>
+<meta name="description" content="Sunflower helps people stay sober, one day at a time. I designed the experience and the UI of new features and flows while the app grew to 100,000 monthly users.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23D7262F'/><text x='16' y='22' font-family='Arial' font-weight='700' font-size='17' fill='white' text-anchor='middle'>A</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBFBFC; --ink: #1A1C24; --muted: #5E6270; --rule: #E4E5EA; --canvas: #F1F2F5;
+    --red: #D7262F; --red-wash: #FCEDEE;
+    --font: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --wrap: 1200px; --gutter: clamp(20px, 5vw, 56px);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(80px + env(safe-area-inset-top, 0px)); }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 1.125rem; line-height: 1.65; font-variation-settings: "opsz" 16; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+  .col { max-width: 720px; }
+
+  .nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--rule); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 650; font-size: 1.0625rem; letter-spacing: -0.01em; }
+  .brand-mark { width: 10px; height: 10px; background: var(--red); }
+  .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(14px, 3vw, 32px); }
+  .nav ul a { text-decoration: none; font-size: 1rem; color: var(--muted); }
+  .nav ul a:hover, .nav ul a[aria-current] { color: var(--ink); }
+  .nav ul a[aria-current] { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 8px; }
+
+  .case-head { padding: clamp(56px, 10vh, 104px) 0 clamp(40px, 6vh, 64px); }
+  .kicker { color: var(--muted); font-size: 1rem; margin: 0 0 14px; }
+  h1 { margin: 0; max-width: 18ch; font-size: clamp(2.5rem, 6.4vw, 5rem); line-height: 1; font-weight: 700; letter-spacing: -0.035em; font-variation-settings: "opsz" 96, "wdth" 84; }
+  .lede { margin: 28px 0 0; max-width: 56ch; font-size: clamp(1.2rem, 2vw, 1.4rem); line-height: 1.45; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 24px; margin: 48px 0 0; padding-top: 20px; border-top: 1px solid var(--ink); }
+  .facts dt { color: var(--muted); font-size: .875rem; }
+  .facts dd { margin: 4px 0 0; font-size: 1rem; line-height: 1.5; }
+
+  .results { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 40px; }
+  .results div { border-left: 2px solid var(--red); padding-left: 16px; }
+  .results b { display: block; color: var(--red); font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; font-variation-settings: "opsz" 72, "wdth" 85; }
+  .results span { color: var(--muted); font-size: .9375rem; }
+
+  .shot { margin: 0; }
+  .shot .canvas { position: relative; aspect-ratio: 16 / 9; background: var(--canvas); border: 1px solid var(--rule); overflow: hidden; }
+  .shot .canvas.empty { display: grid; place-items: center; border-style: dashed; border-color: #C9CBD3; background-image: radial-gradient(#D9DBE1 1px, transparent 1px); background-size: 16px 16px; }
+  .shot .canvas.empty span { background: var(--paper); padding: 6px 12px; color: var(--muted); font-size: .9375rem; border: 1px solid var(--rule); }
+  .shot .canvas img { width: 100%; height: 100%; object-fit: cover; }
+  /* A figure stays hidden until its image file exists; add the file and it appears. */
+  .shot:has(.canvas.empty) { display: none; }
+  /* Room between an image and the next titled section */
+  .wrap:has(> .shot.loaded) + section.part:not(.cont) { margin-top: clamp(40px, 7vh, 72px); }
+  .shot figcaption { color: var(--muted); font-size: .9375rem; margin-top: 10px; }
+  .cover-shot { margin-bottom: clamp(56px, 9vh, 96px); }
+  .cover-shot .canvas { aspect-ratio: 16 / 8; }
+
+  section.part { padding: clamp(40px, 7vh, 72px) 0; border-top: 1px solid var(--rule); }
+  h2 { margin: 0 0 20px; font-size: clamp(1.75rem, 3.4vw, 2.5rem); line-height: 1.1; font-weight: 650; letter-spacing: -0.025em; font-variation-settings: "opsz" 72, "wdth" 88; }
+  h3 { margin: 32px 0 8px; font-size: 1.3125rem; font-weight: 640; letter-spacing: -0.015em; line-height: 1.3; }
+  p { margin: 0 0 16px; }
+  .col ul { padding-left: 1.2em; margin: 0 0 16px; }
+  .col li { margin-bottom: 8px; }
+  .col li::marker { color: var(--red); }
+  .part .shot { margin-top: 36px; }
+  .part.cont { border-top: 0; padding-top: 36px; }
+  .wrap > .shot:not(.cover-shot) { margin-top: 40px; }
+  .part + .wrap > .shot { margin-top: -8px; }
+
+  .findings { list-style: none; padding: 0 !important; margin: 24px 0 0 !important; border-top: 1px solid var(--rule); }
+  .findings li { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--rule); margin: 0 !important; }
+  .findings b { font-weight: 620; }
+  .findings span { color: var(--muted); }
+
+  .steps { list-style: none; padding: 0 !important; margin: 24px 0 0 !important; counter-reset: s; }
+  .steps li { position: relative; padding: 0 0 22px 52px; margin: 0 !important; counter-increment: s; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 31px; height: 31px; border: 1px solid var(--red); color: var(--red); border-radius: 50%; display: grid; place-items: center; font-size: .875rem; font-weight: 600; background: var(--paper); }
+  .steps li::after { content: ""; position: absolute; left: 15px; top: 34px; bottom: 2px; width: 1px; background: var(--rule); }
+  .steps li:last-child::after { display: none; }
+  .steps b { display: block; font-weight: 620; }
+  .steps span { color: var(--muted); }
+
+  blockquote { margin: 28px 0; padding: 4px 0 4px 24px; border-left: 3px solid var(--red); font-size: clamp(1.3rem, 2.4vw, 1.7rem); line-height: 1.35; letter-spacing: -0.015em; }
+
+  .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0 24px; margin-top: 8px; }
+  .team div { padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: 1rem; }
+  .team span { color: var(--muted); display: block; font-size: .875rem; }
+  .team .me { color: var(--red); }
+
+  .source { margin-top: 8px; font-size: 1rem; }
+  .source a { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 4px; }
+
+  .next { border-top: 1px solid var(--ink); padding: clamp(48px, 9vh, 88px) 0; }
+  .next a { text-decoration: none; display: block; }
+  .next small { color: var(--muted); font-size: 1rem; }
+  .next b { display: block; margin-top: 6px; font-size: clamp(2.4rem, 6vw, 4.5rem); line-height: 1; font-weight: 680; letter-spacing: -0.035em; font-variation-settings: "opsz" 96, "wdth" 84; transition: color .25s; }
+  .next a:hover b { color: var(--red); }
+  footer { padding: 24px 0 32px; color: var(--muted); font-size: .875rem; border-top: 1px solid var(--rule); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer a { text-decoration: none; } footer a:hover { color: var(--red); }
+
+  @media (max-width: 640px) {
+    body { font-size: 1.0625rem; }
+    .findings li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+    .brand-name { display: none; }
+    .nav ul li[data-optional] { display: none; }
+  }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Arash Dolatyari</span></a>
+    <ul>
+      <li><a href="../index.html#work" aria-current="page">Work</a></li>
+      <li data-optional><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../assets/Arash_Dolatyari_Product_Designer.pdf" download>Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <header class="case-head">
+    <div class="wrap">
+      <p class="kicker">Sunflower, YC F25, through Synthetic Solutions</p>
+      <h1>Designing new features for a sobriety app</h1>
+      <p class="lede">Sunflower helps people stay sober, one day at a time. I designed the experience and the UI of new features and flows while the app grew to 100,000 monthly users.</p>
+      <dl class="facts"><div><dt>Role</dt><dd>UI/UX designer</dd></div><div><dt>Company</dt><dd>Synthetic Solutions, for Sunflower</dd></div><div><dt>Timeline</dt><dd>Jul 2025 – Jul 2026</dd></div><div><dt>Scope</dt><dd>Feature flows, UI, design system, visual identity</dd></div></dl>
+      <div class="results"><div><b>100k+</b><span>monthly active users</span></div><div><b>500k+</b><span>total users</span></div><div><b>YC F25</b><span>backed by Y Combinator and a16z</span></div></div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <figure class="shot cover-shot">
+  <div class="canvas empty" data-src="../assets/projects/sunflower/cover.jpg"><span>Image coming soon</span></div>
+</figure>
+  </div>
+  <section class="part">
+    <div class="wrap">
+      <div class="col">
+        <h2>The product</h2>
+        <p>Sunflower is an app that helps people stay sober from any substance. For every sober day, people get a sunflower, so they can see their progress and feel rewarded. The app also has CBT-based journaling for cravings, an AI sponsor people can talk to at any time, learning content, and a community of people in recovery.</p>
+        <p>Sunflower is backed by Y Combinator (Fall 2025 batch) and a16z. It grew from 200 to 100,000 monthly active users in less than six months, and it has more than half a million users.</p>
+      </div>
+    </div>
+  </section>
+  <section class="part">
+    <div class="wrap">
+      <div class="col">
+        <h2>My role</h2>
+        <p>I worked on Sunflower as a UI/UX designer through Synthetic Solutions, a product design agency. I designed the experience of new features and flows, and then I designed the UI for each flow.</p>
+        <p>People who use Sunflower are in recovery, and many of them are going through a hard time. Every flow had to feel encouraging, not clinical, and every paywall had to respect this.</p>
+      </div>
+    </div>
+  </section>
+  <section class="part">
+    <div class="wrap">
+      <div class="col">
+        <h2>Features and flows I designed</h2>
+        <ul class="findings">
+          <li><b>Onboarding</b><span>The first steps new members take in the app.</span></li>
+          <li><b>Breathing exercises</b><span>Guided exercises that help people get through a craving.</span></li>
+          <li><b>Progress stats</b><span>A clear view of each person's sober time and milestones.</span></li>
+          <li><b>Community</b><span>A place to share and support others in recovery.</span></li>
+          <li><b>Friend challenges</b><span>Challenges people do together with their friends.</span></li>
+          <li><b>Paywalls and subscriptions</b><span>Subscription screens designed with care for a sensitive audience.</span></li>
+          <li><b>Letter to my future self</b><span>A letter people write to themselves and open one year later.</span></li>
+          <li><b>Live support groups</b><span>Free group sessions on Zoom, led by a licensed counselor.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <div class="wrap"><figure class="shot ">
+  <div class="canvas empty" data-src="../assets/projects/sunflower/onboarding.jpg"><span>Image coming soon</span></div>
+  <figcaption>Onboarding</figcaption>
+</figure></div>
+  <div class="wrap"><figure class="shot ">
+  <div class="canvas empty" data-src="../assets/projects/sunflower/breathing.jpg"><span>Image coming soon</span></div>
+  <figcaption>Breathing exercises</figcaption>
+</figure></div>
+  <div class="wrap"><figure class="shot ">
+  <div class="canvas empty" data-src="../assets/projects/sunflower/progress.jpg"><span>Image coming soon</span></div>
+  <figcaption>Progress stats</figcaption>
+</figure></div>
+  <div class="wrap"><figure class="shot ">
+  <div class="canvas empty" data-src="../assets/projects/sunflower/community.jpg"><span>Image coming soon</span></div>
+  <figcaption>The community website</figcaption>
+</figure></div>
+  <div class="wrap"><figure class="shot ">
+  <div class="canvas empty" data-src="../assets/projects/sunflower/paywall.jpg"><span>Image coming soon</span></div>
+  <figcaption>A yearly offer, and the screens people see when a payment fails</figcaption>
+</figure></div>
+  <div class="wrap"><figure class="shot ">
+  <div class="canvas empty" data-src="../assets/projects/sunflower/letter.jpg"><span>Image coming soon</span></div>
+  <figcaption>Letter to my future self</figcaption>
+</figure></div>
+  <div class="wrap"><figure class="shot ">
+  <div class="canvas empty" data-src="../assets/projects/sunflower/live-groups.jpg"><span>Image coming soon</span></div>
+  <figcaption>Live support groups, led by a licensed counselor</figcaption>
+</figure></div>
+  <section class="part">
+    <div class="wrap">
+      <div class="col">
+        <h2>Design system and visual identity</h2>
+        <p>Besides the flows, I built the app's design system and worked on its visual identity:</p>
+        <ul>
+          <li>Logos</li>
+          <li>An icon pack for each type of addiction</li>
+          <li>Home-screen widgets</li>
+          <li>Milestone templates people can share when they reach a sober milestone</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <div class="wrap"><figure class="shot ">
+  <div class="canvas empty" data-src="../assets/projects/sunflower/identity.jpg"><span>Image coming soon</span></div>
+  <figcaption>Home-screen widgets</figcaption>
+</figure></div>
+
+  <section class="next" style="margin-top:56px">
+    <div class="wrap">
+      <a href="ai-home-design.html"><small>Next case study</small><b>AI Home Design</b><small>How real user behavior changed our product</small></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Arash Dolatyari</span>
+    <a href="../index.html#contact">Get in touch</a>
+  </div>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+// Show each image once its file exists in assets/projects/
+document.querySelectorAll("[data-src]").forEach(box => {
+  const img = new Image();
+  img.alt = box.closest("figure")?.querySelector("figcaption")?.textContent || "";
+  img.onload = () => { box.classList.remove("empty"); box.textContent = ""; box.appendChild(img); box.closest("figure").classList.add("loaded"); };
+  img.src = box.dataset.src;
+});
+</script>
+</body>
+</html>

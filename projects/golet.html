@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Golet — Arash Dolatyari</title>
+<meta name="description" content="Seed investors asked an AI plant care startup to prove that its problem was real. I interviewed 50 plant owners, defined the main problem, and tested if people would pay to solve it.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23D7262F'/><text x='16' y='22' font-family='Arial' font-weight='700' font-size='17' fill='white' text-anchor='middle'>A</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBFBFC; --ink: #1A1C24; --muted: #5E6270; --rule: #E4E5EA; --canvas: #F1F2F5;
+    --red: #D7262F; --red-wash: #FCEDEE;
+    --font: "Bricolage Grotesque", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --wrap: 1200px; --gutter: clamp(20px, 5vw, 56px);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(80px + env(safe-area-inset-top, 0px)); }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 1.125rem; line-height: 1.65; font-variation-settings: "opsz" 16; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+  .col { max-width: 720px; }
+
+  .nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--rule); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 650; font-size: 1.0625rem; letter-spacing: -0.01em; }
+  .brand-mark { width: 10px; height: 10px; background: var(--red); }
+  .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(14px, 3vw, 32px); }
+  .nav ul a { text-decoration: none; font-size: 1rem; color: var(--muted); }
+  .nav ul a:hover, .nav ul a[aria-current] { color: var(--ink); }
+  .nav ul a[aria-current] { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 2px; text-underline-offset: 8px; }
+
+  .case-head { padding: clamp(56px, 10vh, 104px) 0 clamp(40px, 6vh, 64px); }
+  .kicker { color: var(--muted); font-size: 1rem; margin: 0 0 14px; }
+  h1 { margin: 0; max-width: 18ch; font-size: clamp(2.5rem, 6.4vw, 5rem); line-height: 1; font-weight: 700; letter-spacing: -0.035em; font-variation-settings: "opsz" 96, "wdth" 84; }
+  .lede { margin: 28px 0 0; max-width: 56ch; font-size: clamp(1.2rem, 2vw, 1.4rem); line-height: 1.45; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 24px; margin: 48px 0 0; padding-top: 20px; border-top: 1px solid var(--ink); }
+  .facts dt { color: var(--muted); font-size: .875rem; }
+  .facts dd { margin: 4px 0 0; font-size: 1rem; line-height: 1.5; }
+
+  .results { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 40px; }
+  .results div { border-left: 2px solid var(--red); padding-left: 16px; }
+  .results b { display: block; color: var(--red); font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.03em; font-variation-settings: "opsz" 72, "wdth" 85; }
+  .results span { color: var(--muted); font-size: .9375rem; }
+
+  .shot { margin: 0; }
+  .shot .canvas { position: relative; aspect-ratio: 16 / 9; background: var(--canvas); border: 1px solid var(--rule); overflow: hidden; }
+  .shot .canvas.empty { display: grid; place-items: center; border-style: dashed; border-color: #C9CBD3; background-image: radial-gradient(#D9DBE1 1px, transparent 1px); background-size: 16px 16px; }
+  .shot .canvas.empty span { background: var(--paper); padding: 6px 12px; color: var(--muted); font-size: .9375rem; border: 1px solid var(--rule); }
+  .shot .canvas img { width: 100%; height: 100%; object-fit: cover; }
+  /* A figure stays hidden until its image file exists; add the file and it appears. */
+  .shot:has(.canvas.empty) { display: none; }
+  /* Room between an image and the next titled section */
+  .wrap:has(> .shot.loaded) + section.part:not(.cont) { margin-top: clamp(40px, 7vh, 72px); }
+  .shot figcaption { color: var(--muted); font-size: .9375rem; margin-top: 10px; }
+  .cover-shot { margin-bottom: clamp(56px, 9vh, 96px); }
+  .cover-shot .canvas { aspect-ratio: 16 / 8; }
+
+  section.part { padding: clamp(40px, 7vh, 72px) 0; border-top: 1px solid var(--rule); }
+  h2 { margin: 0 0 20px; font-size: clamp(1.75rem, 3.4vw, 2.5rem); line-height: 1.1; font-weight: 650; letter-spacing: -0.025em; font-variation-settings: "opsz" 72, "wdth" 88; }
+  h3 { margin: 32px 0 8px; font-size: 1.3125rem; font-weight: 640; letter-spacing: -0.015em; line-height: 1.3; }
+  p { margin: 0 0 16px; }
+  .col ul { padding-left: 1.2em; margin: 0 0 16px; }
+  .col li { margin-bottom: 8px; }
+  .col li::marker { color: var(--red); }
+  .part .shot { margin-top: 36px; }
+  .part.cont { border-top: 0; padding-top: 36px; }
+  .wrap > .shot:not(.cover-shot) { margin-top: 40px; }
+  .part + .wrap > .shot { margin-top: -8px; }
+
+  .findings { list-style: none; padding: 0 !important; margin: 24px 0 0 !important; border-top: 1px solid var(--rule); }
+  .findings li { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--rule); margin: 0 !important; }
+  .findings b { font-weight: 620; }
+  .findings span { color: var(--muted); }
+
+  .steps { list-style: none; padding: 0 !important; margin: 24px 0 0 !important; counter-reset: s; }
+  .steps li { position: relative; padding: 0 0 22px 52px; margin: 0 !important; counter-increment: s; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 31px; height: 31px; border: 1px solid var(--red); color: var(--red); border-radius: 50%; display: grid; place-items: center; font-size: .875rem; font-weight: 600; background: var(--paper); }
+  .steps li::after { content: ""; position: absolute; left: 15px; top: 34px; bottom: 2px; width: 1px; background: var(--rule); }
+  .steps li:last-child::after { display: none; }
+  .steps b { display: block; font-weight: 620; }
+  .steps span { color: var(--muted); }
+
+  blockquote { margin: 28px 0; padding: 4px 0 4px 24px; border-left: 3px solid var(--red); font-size: clamp(1.3rem, 2.4vw, 1.7rem); line-height: 1.35; letter-spacing: -0.015em; }
+
+  .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0 24px; margin-top: 8px; }
+  .team div { padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: 1rem; }
+  .team span { color: var(--muted); display: block; font-size: .875rem; }
+  .team .me { color: var(--red); }
+
+  .source { margin-top: 8px; font-size: 1rem; }
+  .source a { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 4px; }
+
+  .next { border-top: 1px solid var(--ink); padding: clamp(48px, 9vh, 88px) 0; }
+  .next a { text-decoration: none; display: block; }
+  .next small { color: var(--muted); font-size: 1rem; }
+  .next b { display: block; margin-top: 6px; font-size: clamp(2.4rem, 6vw, 4.5rem); line-height: 1; font-weight: 680; letter-spacing: -0.035em; font-variation-settings: "opsz" 96, "wdth" 84; transition: color .25s; }
+  .next a:hover b { color: var(--red); }
+  footer { padding: 24px 0 32px; color: var(--muted); font-size: .875rem; border-top: 1px solid var(--rule); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer a { text-decoration: none; } footer a:hover { color: var(--red); }
+
+  @media (max-width: 640px) {
+    body { font-size: 1.0625rem; }
+    .findings li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+    .brand-name { display: none; }
+    .nav ul li[data-optional] { display: none; }
+  }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Arash Dolatyari</span></a>
+    <ul>
+      <li><a href="../index.html#work" aria-current="page">Work</a></li>
+      <li data-optional><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../assets/Arash_Dolatyari_Product_Designer.pdf" download>Resume</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <header class="case-head">
+    <div class="wrap">
+      <p class="kicker">Golet, AI plant care startup</p>
+      <h1>Validating the problem statement for a startup</h1>
+      <p class="lede">Seed investors asked an AI plant care startup to prove that its problem was real. I interviewed 50 plant owners, defined the main problem, and tested if people would pay to solve it.</p>
+      <dl class="facts"><div><dt>Role</dt><dd>Product designer</dd></div><div><dt>Company</dt><dd>Golet</dd></div><div><dt>Methods</dt><dd>User interviews, tagging analysis, pricing tests</dd></div><div><dt>Tools</dt><dd>Figma, Google Analytics</dd></div></dl>
+      <div class="results"><div><b>50</b><span>user interviews</span></div><div><b>1</b><span>validated problem statement</span></div><div><b>2</b><span>business models tested in 7 days</span></div></div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <figure class="shot cover-shot">
+  <div class="canvas empty" data-src="../assets/projects/golet/cover.jpg"><span>Image coming soon</span></div>
+</figure>
+  </div>
+  <section class="part">
+    <div class="wrap">
+      <div class="col">
+        <h2>The challenge</h2>
+        <p>Golet started in early 2024 to build an AI app for houseplant care. When I joined, the team was getting ready to raise a seed round, and the investors had one condition: a validated problem statement.</p>
+        <p>We had two goals:</p>
+        <ul>
+          <li>Find the problems people have with plant care, by interviewing at least 50 users</li>
+          <li>Prove that people are willing to pay to solve them</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="part">
+    <div class="wrap">
+      <div class="col">
+        <h2>Finding 50 people to talk to</h2>
+        <p>Finding plant owners to talk to was a design problem by itself. Each try taught me where to look next.</p>
+        <ol class="steps">
+          <li><b>Local flower shops</b><span>The weather was bad, so not many people came in. Five interviews.</span></li>
+          <li><b>University offices</b><span>I went back to my university and visited staff who kept plants on their desks. When I said it was research for an essay, people were happy to help. About 20 interviews in total.</span></li>
+          <li><b>Online plant forums</b><span>I spent a full day on outreach, and nobody signed up.</span></li>
+          <li><b>Friends of friends</b><span>I asked my friends for contacts who had houseplants and got about 40 phone numbers. This was enough to reach the goal.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section class="part">
+    <div class="wrap">
+      <div class="col">
+        <h2>Making sense of the interviews</h2>
+        <p>First, I removed the interviews where people had no real plant problem and no interest in paying for help. Then I read every remaining interview and tagged each problem, to see which ones came up the most.</p>
+      </div>
+    </div>
+  </section>
+  <div class="wrap"><figure class="shot ">
+  <div class="canvas empty" data-src="../assets/projects/golet/analysis.jpg"><span>Image coming soon</span></div>
+  <figcaption>Problems tagged across all interviews</figcaption>
+</figure></div>
+  <section class="part">
+    <div class="wrap">
+      <div class="col">
+        <h2>The problem statement</h2>
+        <p>After the analysis, the team met and agreed on one main problem for the MVP:</p>
+        <blockquote>People don't know enough about how to care for their plants. This leads to growth problems or diseases, and they are willing to pay for a solution.</blockquote>
+      </div>
+    </div>
+  </section>
+  <section class="part">
+    <div class="wrap">
+      <div class="col">
+        <h2>Testing willingness to pay</h2>
+        <p>We chose two business models to test:</p>
+        <ul class="findings">
+          <li><b>Pay as you go</b><span>Pay each time the AI identifies a plant disease.</span></li>
+          <li><b>Subscription</b><span>A monthly plan with a set number of identifications.</span></li>
+        </ul>
+        <h3>Working with the limits we had</h3>
+        <p>The development team couldn't add test pages to the app in time. So we used the blog instead. It had 700 to 1,000 visitors a day, and we added targeted campaigns to bring more traffic. I designed the campaign banner in Figma.</p>
+      </div>
+    </div>
+  </section>
+  <div class="wrap"><figure class="shot ">
+  <div class="canvas empty" data-src="../assets/projects/golet/banner.jpg"><span>Image coming soon</span></div>
+  <figcaption>Campaign banner</figcaption>
+</figure></div>
+  <section class="part cont">
+    <div class="wrap">
+      <div class="col">
+        <h3>The test design</h3>
+        <p>I designed a user flow and UI screens that let us test both models inside the blog, without changing the app.</p>
+      </div>
+    </div>
+  </section>
+  <div class="wrap"><figure class="shot ">
+  <div class="canvas empty" data-src="../assets/projects/golet/flow.jpg"><span>Image coming soon</span></div>
+  <figcaption>The disease detection flow and the Golet Plus subscription screen</figcaption>
+</figure></div>
+  <section class="part">
+    <div class="wrap">
+      <div class="col">
+        <h2>Results</h2>
+        <p>We ran the test for seven days and tracked it with Google Analytics.</p>
+      </div>
+    </div>
+  </section>
+  <div class="wrap"><figure class="shot ">
+  <div class="canvas empty" data-src="../assets/projects/golet/results.jpg"><span>Image coming soon</span></div>
+  <figcaption>Results after seven days</figcaption>
+</figure></div>
+  <div class="wrap">
+    <p class="source col">You can also read this case study on <a href="https://medium.com/@adolatyari2/validating-the-problem-statement-for-a-startup-1171a957947e" target="_blank" rel="noopener">Medium</a>.</p>
+  </div>
+
+  <section class="next" style="margin-top:56px">
+    <div class="wrap">
+      <a href="sunflower.html"><small>Next case study</small><b>Sunflower</b><small>Designing new features for a sobriety app</small></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Arash Dolatyari</span>
+    <a href="../index.html#contact">Get in touch</a>
+  </div>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+// Show each image once its file exists in assets/projects/
+document.querySelectorAll("[data-src]").forEach(box => {
+  const img = new Image();
+  img.alt = box.closest("figure")?.querySelector("figcaption")?.textContent || "";
+  img.onload = () => { box.classList.remove("empty"); box.textContent = ""; box.appendChild(img); box.closest("figure").classList.add("loaded"); };
+  img.src = box.dataset.src;
+});
+</script>
+</body>
+</html>
