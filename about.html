@@ -30,6 +30,7 @@
   .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 650; font-size: 1.0625rem; letter-spacing: -0.01em; }
   .brand-mark { width: 10px; height: 10px; background: var(--red); }
+  .brand-home { display: none; }
   .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(14px, 3vw, 32px); }
   .nav ul a { text-decoration: none; font-size: 1rem; color: var(--muted); }
   .nav ul a:hover, .nav ul a[aria-current] { color: var(--ink); }
@@ -71,6 +72,9 @@
   .head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: clamp(28px, 4vw, 44px); flex-wrap: wrap; }
   h2 { margin: 0; font-size: clamp(1.9rem, 4vw, 2.75rem); line-height: 1.05; font-weight: 650; letter-spacing: -0.03em; font-variation-settings: "opsz" 72, "wdth" 88; }
   .head p { margin: 0; color: var(--muted); max-width: 46ch; }
+  .story { max-width: 720px; }
+  .story p { margin: 0 0 16px; }
+  .story p:last-child { margin-bottom: 0; }
 
   .shelf { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 2.5vw, 28px); list-style: none; margin: 0; padding: 0; }
   .item .cover { aspect-ratio: 2 / 3; background: var(--canvas); border: 1px solid var(--rule); overflow: hidden; }
@@ -111,7 +115,8 @@
   }
   @media (max-width: 640px) {
     body { font-size: 1.0625rem; }
-    .brand-name { display: none; }
+    .brand-name, .brand-mark { display: none; }
+    .brand-home { display: inline; color: var(--muted); font-weight: 400; font-size: 1rem; }
     .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .nav ul li[data-optional] { display: none; }
     .afacts { grid-template-columns: minmax(0, 1fr); gap: 24px; }
@@ -121,7 +126,7 @@
 <body>
 <nav class="nav" aria-label="Main">
   <div class="wrap">
-    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Arash Dolatyari</span></a>
+    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Arash Dolatyari</span><span class="brand-home">Home</span></a>
     <ul>
       <li><a href="index.html#work">Work</a></li>
       <li data-optional><a href="index.html#experience">Experience</a></li>
@@ -149,6 +154,17 @@
       </div>
     </div>
   </header>
+
+  <section class="block" aria-labelledby="story-title">
+    <div class="wrap">
+      <div class="head"><h2 id="story-title">My story</h2></div>
+      <div class="story">
+        <p>I was born on March 3, 1999, in Zanjan, Iran. My childhood had two halves. In one, I played video games (special thanks to my dad for buying us a PC with a good graphics card). In the other, I played football in the streets and dreamed of becoming a football player, like almost every other boy.</p>
+        <p>I studied chemistry at university. Then the pandemic came, and because of my love for football and cartoons, I decided to learn graphic design. That's the reason you, whoever you are, are reading this now.</p>
+        <p>While I was exploring graphic design, I found product design by accident. I've been a product designer ever since.</p>
+      </div>
+    </div>
+  </section>
 
   <section class="block" aria-labelledby="games-title">
     <div class="wrap">

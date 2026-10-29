@@ -31,6 +31,7 @@
   .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 650; font-size: 1.0625rem; letter-spacing: -0.01em; }
   .brand-mark { width: 10px; height: 10px; background: var(--red); }
+  .brand-home { display: none; }
   .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: clamp(14px, 3vw, 32px); }
   .nav ul a { text-decoration: none; font-size: 1rem; color: var(--muted); }
   .nav ul a:hover, .nav ul a[aria-current] { color: var(--ink); }
@@ -69,6 +70,7 @@
   .col ul { padding-left: 1.2em; margin: 0 0 16px; }
   .col li { margin-bottom: 8px; }
   .col li::marker { color: var(--red); }
+  .col strong { font-weight: 620; }
   .part .shot { margin-top: 36px; }
   .part.cont { border-top: 0; padding-top: 36px; }
   .wrap > .shot:not(.cover-shot) { margin-top: 40px; }
@@ -78,6 +80,19 @@
   .findings li { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--rule); margin: 0 !important; }
   .findings b { font-weight: 620; }
   .findings span { color: var(--muted); }
+
+  .questions { list-style: none; padding: 0 !important; margin: 20px 0 28px !important; display: grid; gap: 12px; }
+  .questions li { margin: 0 !important; padding: 16px 20px; background: var(--canvas); border-left: 2px solid var(--red); font-size: 1rem; }
+
+  .voices { margin: 32px 0 8px; padding: clamp(28px, 5vw, 56px); background: var(--canvas); }
+  .voices-label { margin: 0 0 clamp(24px, 4vw, 40px); color: var(--muted); font-size: .875rem; letter-spacing: .06em; text-transform: uppercase; }
+  .voices ul { list-style: none; margin: 0; padding: 0; display: grid; align-items: start; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(32px, 5vw, 56px) clamp(24px, 4vw, 48px); }
+  .voices li { position: relative; padding: 24px 28px; background: var(--paper); box-shadow: 0 1px 2px rgba(26, 28, 36, .06); }
+  .voices li::after { content: ""; position: absolute; bottom: -12px; right: 32%; border: 12px solid transparent; border-top-color: var(--paper); border-bottom: 0; border-right: 0; }
+  .voices li:nth-child(odd) { margin-left: 12%; }
+  .voices li:nth-child(even) { transform: translateY(-28px); margin-right: 6%; }
+  .voices b { display: block; font-size: clamp(1.25rem, 2.2vw, 1.6rem); font-weight: 620; line-height: 1.2; letter-spacing: -0.015em; }
+  .voices span { display: block; margin-top: 8px; color: var(--muted); font-size: 1rem; }
 
   .steps { list-style: none; padding: 0 !important; margin: 24px 0 0 !important; counter-reset: s; }
   .steps li { position: relative; padding: 0 0 22px 52px; margin: 0 !important; counter-increment: s; }
@@ -109,7 +124,10 @@
   @media (max-width: 640px) {
     body { font-size: 1.0625rem; }
     .findings li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
-    .brand-name { display: none; }
+    .voices ul { grid-template-columns: minmax(0, 1fr); }
+    .voices li:nth-child(n) { margin: 0; transform: none; }
+    .brand-name, .brand-mark { display: none; }
+    .brand-home { display: inline; color: var(--muted); font-weight: 400; font-size: 1rem; }
     .nav ul li[data-optional] { display: none; }
   }
 </style>
@@ -117,7 +135,7 @@
 <body>
 <nav class="nav" aria-label="Main">
   <div class="wrap">
-    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Arash Dolatyari</span></a>
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Arash Dolatyari</span><span class="brand-home">Home</span></a>
     <ul>
       <li><a href="../index.html#work" aria-current="page">Work</a></li>
       <li data-optional><a href="../index.html#experience">Experience</a></li>
@@ -147,9 +165,30 @@
   <section class="part">
     <div class="wrap">
       <div class="col">
-        <h2>The problem</h2>
-        <p>AI Home Design helps real estate professionals edit property photos in seconds. It has tools for virtual staging, image enhancement, and fixes that make a photo ready to list.</p>
-        <p>Our usage data showed that four tools made up 60% of all activity on the platform. We wanted to understand what stopped people from using these four tools. Our goal was simple: more people paying for a plan.</p>
+        <h2>My role</h2>
+        <p>I was a product designer and worked with the product, marketing, and development teams. I:</p>
+        <ul>
+          <li><strong>Ran user interviews</strong> to learn how paying users worked with the platform and where they had problems</li>
+          <li><strong>Redesigned the landing pages</strong> so people could find and understand the most useful tools faster</li>
+          <li><strong>Worked with developers and marketing</strong> during the build to keep the design consistent</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="part">
+    <div class="wrap">
+      <div class="col">
+        <h2>The project</h2>
+        <p>AI Home Design helps real estate professionals <strong>edit property photos in seconds</strong>. It has tools for virtual staging, image enhancement, and fixes that make a photo ready to list.</p>
+      </div>
+    </div>
+  </section>
+  <section class="part">
+    <div class="wrap">
+      <div class="col">
+        <h2>How it started</h2>
+        <p>We started a project to <strong>optimize the website for our users</strong>. To do that, we first had to <strong>know who our users were</strong> and how different groups used the product.</p>
+        <p>Our usage data showed that <strong>four tools made up 60% of all activity</strong> on the platform. We wanted to understand what stopped people from using these four tools. Our goal was simple: <strong>more people paying for a plan</strong>.</p>
       </div>
     </div>
   </section>
@@ -160,56 +199,46 @@
   <section class="part">
     <div class="wrap">
       <div class="col">
-        <h2>My role</h2>
-        <p>I was a product designer and worked with the product, marketing, and development teams. I:</p>
-        <ul>
-          <li>Ran user interviews to learn how paying users worked with the platform and where they had problems</li>
-          <li>Redesigned the landing pages so people could find and understand the most useful tools faster</li>
-          <li>Worked with developers and marketing during the build to keep the design consistent</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <section class="part">
-    <div class="wrap">
-      <div class="col">
-        <h2>Talking to people who left</h2>
-        <p>The best people to tell us why the product wasn't working were the people who had just canceled. When someone canceled, we asked about their job and their experience. Then we invited the real estate professionals to a follow-up interview.</p>
-        <p>We ran 20 semi-structured interviews around three questions:</p>
-        <ul>
+        <h2>Our approach</h2>
+        <p>This was the <strong>first time we did research on the product</strong>, so it was ground research. As a startup <strong>we had to move fast</strong>. We made a list of the questions we had and started inviting users to interviews.</p>
+        <p>We started with <strong>people who had bought a subscription</strong>. They were willing to pay, but the product didn't give them what they expected. These users were also the easiest to reach. We already had a flow that encouraged people to stay with the product, so we added a temporary step: <strong>to cancel their subscription, they had to do an interview with us</strong>.</p>
+        <p>We ran <strong>20 semi-structured interviews</strong> around three questions:</p>
+        <ul class="questions">
           <li>Why did you start using the product?</li>
           <li>What made you leave?</li>
           <li>What is your role in real estate?</li>
         </ul>
-        <p>To analyze the interviews, we used thematic analysis. Each person on the team wrote notes from their interviews and coded the main frustrations. When we grouped these codes across all 20 interviews, we got a ranked list of the most common and most serious problems.</p>
+        <p>After the interviews, we summarized the findings and made changes to see the results. <strong>We didn't validate the findings first</strong>. With about 2,000 weekly users, a survey would have taken at least two weeks to give us reliable data. So we decided to move forward with what we had learned and <strong>measure the results live on the website</strong>.</p>
       </div>
     </div>
   </section>
-  <div class="wrap"><figure class="shot ">
-  <div class="canvas empty" data-src="../assets/projects/ai-home-design/findings.jpg"><span>Image coming soon</span></div>
-  <figcaption>Interview findings, grouped by theme</figcaption>
-</figure></div>
   <section class="part">
     <div class="wrap">
       <div class="col">
         <h2>What we found</h2>
-        <p>Apart from the issues with the top tools, three problems came up again and again:</p>
-        <ul class="findings">
-          <li><b>Unclear value</b><span>People didn't know the product was made for real estate.</span></li>
-          <li><b>Hidden pricing</b><span>They wanted to know the price per image before they decided.</span></li>
-          <li><b>Fear of losing control</b><span>They weren't sure they could edit the AI results, so they didn't want to commit.</span></li>
+        <p>Four problems came up again and again:</p>
+      </div>
+      <div class="voices">
+        <p class="voices-label">What users told us</p>
+        <ul>
+          <li><b>Unclear pricing</b><span>They wanted to know the price per image before they decided.</span></li>
+          <li><b>No control over edits</b><span>They weren't sure they could edit the AI results, so they didn't want to commit.</span></li>
+          <li><b>Unclear advantage of our product</b><span>People didn't know the product was made for real estate.</span></li>
+          <li><b>Hard to find the right tool</b><span>The tools they used most were mixed in with many others, so they struggled to find them.</span></li>
         </ul>
+      </div>
+      <div class="col">
         <h3>More than one kind of customer</h3>
-        <p>Realtors were not our only users. Photographers, agencies, and part-time realtors were paying too. Our focus was too narrow, so we expanded the research to check these other personas.</p>
+        <p><strong>Realtors were not our only users</strong>. Photographers, agencies, and part-time realtors were paying too. Our focus was too narrow, so <strong>we expanded the research</strong> to check these other personas.</p>
       </div>
     </div>
   </section>
   <section class="part">
     <div class="wrap">
       <div class="col">
-        <h2>What we changed</h2>
+        <h2>Our solutions</h2>
         <h3>Information architecture based on real usage</h3>
-        <p>We put every tool into clear categories. Virtual Staging, the most used tool, got its own category. The next three, Day to Dusk, Item Removal, and Image Enhancement, went into one group. Everything else moved under Renovation.</p>
+        <p>We put every tool into clear categories. <strong>Virtual Staging, the most used tool, got its own category</strong>. The next three, Day to Dusk, Item Removal, and Image Enhancement, went into one group. Everything else moved under Renovation.</p>
       </div>
     </div>
   </section>
@@ -221,7 +250,7 @@
     <div class="wrap">
       <div class="col">
         <h3>Positioning for real estate professionals</h3>
-        <p>We changed the messaging from design language to the language real estate people use. The new hero line, “The Ultimate AI Toolbox for Property Listing,” told them the product was made for them, but it still welcomed other users.</p>
+        <p>We changed the messaging <strong>from design language to the language real estate people use</strong>. The new hero line, “The Ultimate AI Toolbox for Property Listing,” told them the product was made for them, but it still welcomed other users.</p>
       </div>
     </div>
   </section>
@@ -233,7 +262,7 @@
     <div class="wrap">
       <div class="col">
         <h3>Clear pricing and value</h3>
-        <p>Now the landing pages show the exact price per photo and list the most requested features at the top.</p>
+        <p>Now the landing pages show the <strong>exact price per photo</strong> and list the <strong>most requested features</strong> at the top.</p>
       </div>
     </div>
   </section>
@@ -245,7 +274,7 @@
     <div class="wrap">
       <div class="col">
         <h3>A better research process</h3>
-        <p>We added a short survey before each interview. When we knew each person's job in advance, it was easier to group participants and choose the right people to talk to.</p>
+        <p>We added a <strong>short survey before each interview</strong>. When we knew each person's job in advance, it was easier to group participants and choose the right people to talk to.</p>
       </div>
     </div>
   </section>
@@ -253,8 +282,8 @@
     <div class="wrap">
       <div class="col">
         <h2>Impact</h2>
-        <p>Two weeks after launch, we measured the results. We used GA4 for the funnel and Metabase for tool usage and premium plans. Subscriptions per session went up 35%, signups per session went up 17%, and subscriptions per signup went up 20%.</p>
-        <p>A simpler structure and a clearer message helped people find the right tool and decide to pay for it.</p>
+        <p>Two weeks after launch, we measured the results. We used GA4 for the funnel and Metabase for tool usage and premium plans. <strong>Subscriptions per session went up 35%</strong>, <strong>signups per session went up 17%</strong>, and <strong>subscriptions per signup went up 20%</strong>.</p>
+        <p>A simpler structure and a clearer message helped people <strong>find the right tool and decide to pay for it</strong>.</p>
       </div>
       <div class="results"><div><b>+35%</b><span>subscriptions per session</span></div><div><b>+17%</b><span>signups per session</span></div><div><b>+20%</b><span>subscriptions per signup</span></div></div>
     </div>
@@ -263,7 +292,7 @@
     <div class="wrap">
       <div class="col">
         <h2>What we learned</h2>
-        <p>Focusing on one professional market worked. Improving the most used tools increased paid subscriptions. The next step was to add features that bring people back every day, to improve retention.</p>
+        <p><strong>Focusing on one professional market worked</strong>. Improving the most used tools increased paid subscriptions. The next step was to add features that bring people back every day, to <strong>improve retention</strong>.</p>
       </div>
     </div>
   </section>
