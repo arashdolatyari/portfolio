@@ -1,4 +1,4 @@
-# Arash Dolatyari — Portfolio
+# Arash Dolatyari Portfolio
 
 A single-page portfolio. No build step: everything lives in `index.html`.
 
